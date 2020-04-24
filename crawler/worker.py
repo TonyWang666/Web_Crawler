@@ -19,19 +19,32 @@ class Worker(Thread):
             tbd_url = self.frontier.get_tbd_url()
             if not tbd_url:
                 self.logger.info("Frontier is empty. Stopping Crawler.")
-                # write the glboal uniqueUrlNum, maxWordPage, and maxHeapWordFreq into text file
-                outMostFreqWord = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_most_req_word.txt', 'w')
+                # Task 1: Write unique pages number
                 outUniquePage = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_unique_page.txt', 'w')
+                outUniquePage.write("Number of unique url is: ")
+                outUniquePage.write(str(scraper.uniqueUrlNum))
+                outUniquePage.write("\n")
+
+                # Task 2: Write longest Page in terms of number of words
+                outUniquePage.write("Longest Page in terms of numbers of words is: ") 
+                outUniquePage.write(scraper.maxWordsPage)
+
+                #Task 3: Write 50 most common words in the entire set of pages
+                outMostFreqWord = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_50_most_freq_word.txt', 'w')
                 for token in tokenizer.get50MostWords(scraper.totalWordFreq):
                     outMostFreqWord.write(token)
                     outMostFreqWord.write("\n")
-                outUniquePage.write(str(scraper.uniqueUrlNum))
-                outUniquePage.write("\n")
-                # self.logger.info("The number of unique Url is:", scraper.uniqueUrlNum)
-                for url in scraper.visitedUrl:
-                    outUniquePage.write(url)
-                    outUniquePage.write("\n")
-                    # self.logger.info('url is:', url)
+
+                #Task 4: write targetUrlDict
+                outPagesPerUrl = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/target_url_with_unique_page.txt', 'a')
+                for targetKey in sorted (scraper.targetUrlDict):
+                    outPagesPerUrl.write(targetKey)
+                    outPagesPerUrl.write(', ')
+                    outPagesPerUrl.write(str(scraper.targetUrlDict[targetKey]))
+                    outPagesPerUrl.write('\n')
+                outUniquePage.close()
+                outMostFreqWord.close()
+                outPagesPerUrl.close()
                 break
             resp = download(tbd_url, self.config, self.logger)
             self.logger.info(
