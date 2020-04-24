@@ -3,6 +3,11 @@ ABOUT
 This is the base implementation of a full crawler that uses a spacetime
 cache server to receive requests.
 
+4 Tasks are answered in the 3 output files:
+"output_50_most_freq_word.txt": answer for Task3, containing 50 most common words in the entire set of pages.
+"target_url_with_unique_page.txt": answer for Task4, containing all target url(in subdomain "ics.uci.edu") with the number for the subdomain we encountered.
+
+
 CONFIGURATION
 -------------------------
 

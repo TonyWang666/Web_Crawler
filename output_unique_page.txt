@@ -1,0 +1,2 @@
+Number of unique url is:2706
+Longest Page in terms of numbers of words is:http://www.ics.uci.edu/~kay/wordlist.txt

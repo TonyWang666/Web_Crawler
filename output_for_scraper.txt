@@ -1,0 +1,336 @@
+
+
+
+
+
+what we build | informatics @ the university of california, irvine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+people
+contact
+site map
+news
+
+
+
+
+search for:
+
+
+
+ 
+
+
+
+
+
+menu
+skip to content
+explore
+
+
+chair’s welcome
+faculty profiles
+books we read
+history of the department
+seminar series
+blogs we author
+department vision
+books we have written
+visiting the department
+facts & figures
+
+
+
+graduate degrees
+
+
+overview
+ph.d. software engineering
+policies
+ph.d. informatics
+m.s. software engineering
+diversity ambassador
+m.s. informatics
+master of software engineering
+student profiles
+master of human-computer interaction & design
+courses
+student groups
+ 
+ 
+upcoming course schedule
+
+
+
+undergraduate degrees
+
+
+b.s. informatics
+b.s. information & computer science
+policies
+b.s. business information management
+special opportunities
+student profiles
+b.s. computer game science
+minors
+student groups
+b.s. software engineering
+courses
+upcoming course schedule
+
+
+
+admissions
+
+
+graduate application process
+coming from abroad
+housing
+undergraduate application process
+student life
+
+
+
+research
+
+
+labs & centers
+ph.d. research
+undergraduate research
+areas of expertise
+past dissertations
+gifts & grants
+example projects
+masters research
+
+
+
+impact
+
+
+research that matters
+undergraduate alumni spotlights
+outreach
+graduate alumni spotlights
+community engagement
+
+
+
+support
+
+
+champion research
+become a corporate partner
+share your talent
+support students
+provide projects
+set future agenda
+be a mentor
+post jobs
+
+
+
+
+
+
+menuexplore
+
+chair’s welcome
+history of the department
+department vision
+facts & figures
+faculty profiles
+seminar series
+books we have written
+books we read
+blogs we author
+visiting the department
+
+
+graduate degrees
+
+ph.d. informatics
+m.s. informatics
+ph.d. software engineering
+m.s. software engineering
+master of human-computer interaction & design
+master of software engineering
+courses
+policies
+diversity ambassador
+student profiles
+student groups
+upcoming course schedule
+
+
+undergraduate degrees
+
+b.s. informatics
+b.s. business information management
+b.s. computer game science
+b.s. software engineering
+b.s. information & computer science
+special opportunities
+minors
+courses
+policies
+student profiles
+student groups
+upcoming course schedule
+
+
+admissions
+
+graduate application process
+undergraduate application process
+coming from abroad
+student life
+housing
+
+
+research
+
+labs & centers
+areas of expertise
+example projects
+ph.d. research
+past dissertations
+masters research
+undergraduate research
+gifts & grants
+
+
+impact
+
+research that matters
+graduate alumni spotlights
+undergraduate alumni spotlights
+community engagement
+outreach
+
+
+support
+
+champion research
+support students
+be a mentor
+become a corporate partner
+provide projects
+post jobs
+share your talent
+set future agenda
+
+
+ 
+
+
+
+
+
+
+
+← how we work  what we build  	
+
+
+
+
+what we build
+
+
+technology is powered by people. from engineers to end users, individuals propel forward the innovations that support and sustain our civilization. informatics delves into the strategy behind these innovations, exposes their inner workings and blazes a trail to stunning advances in technological capability. through incisive analysis and inspired creativity, informatics is the building block of a successful modern society.
+designing for inclusiveness
+traditionally, the “one size fits all” model of many classrooms has made it difficult to meet the needs of certain students. the department of informatics is expanding the horizons of childhood education by creating comfortable, customized experiences that adapt to children’s learning styles and individual situations. the emergence of innovative virtual and augmented reality platforms presents opportunities to truly personalize learning experiences, especially for children with chronic health conditions or disabilities. as one example, we are developing learning environments for children and adults with autism that aim to increase their quality of life by supporting social and communication skills. as another, we are researching the use of telepresence robots to allow homebound children to attend class. and more is to come, with the relatively low cost of micro-electronics, 3d printing, and vr headsets setting the stage for a dramatic change in not only how we teach kids but also how we treat patients and help families. informatics is at the forefront of exploring how best to exploit technology to reach the disenfranchised and better address the needs of all citizens.
+securing our cyberinfrastructure
+whether it is built by an individual at home, a small business or a corporate behemoth like google, technology starts as an idea. fleshing out that idea through design and development involves a multi-faceted process shaped by programming challenges, market competition and the ever-increasing scale of the systems we create. the department of informatics is a leader in addressing all aspects of technology production, including security aspects, which are essential to mitigating ever-increasing risks and privacy concerns. for example, our faculty members are working on tools such as revealdroid, which applies a machine-learning- based approach to malware detection to better secure mobile apps. another example is covert, a tool that aims to identify and address vulnerabilities created by the interaction of multiple apps. with these and other cutting-edge tools and approaches, in security and beyond, informatics continuously seeks to push toward a safer, tech-enabled society.
+
+
+
+
+
+
+
+informatics brochure (pdf)
+ 
+
+
+
+people
+contact
+site map
+news
+
+
+
+
+
+
+
+feedback
+privacy policy
+					© 2020 uc regents
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -26,12 +26,15 @@ class Frontier(object):
         # Load existing save file, or create one if it does not exist.
         self.save = shelve.open(self.config.save_file)
         if restart:
+            self.logger.info('restart...')
             for url in self.config.seed_urls:
                 self.add_url(url)
         else:
+            self.logger.info('Set the frontier state with contents of save file.')
             # Set the frontier state with contents of save file.
             self._parse_save_file()
             if not self.save:
+                self.logger.info('add seed_urls...')
                 for url in self.config.seed_urls:
                     self.add_url(url)
 
