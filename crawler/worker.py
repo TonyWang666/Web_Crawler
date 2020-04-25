@@ -20,7 +20,7 @@ class Worker(Thread):
             if not tbd_url:
                 self.logger.info("Frontier is empty. Stopping Crawler.")
                 # Task 1: Write unique pages number
-                outUniquePage = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_unique_page.txt', 'w')
+                outUniquePage = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_unique_page.txt', 'w', encoding="utf-8")
                 outUniquePage.write("Number of unique url is: ")
                 outUniquePage.write(str(scraper.uniqueUrlNum))
                 outUniquePage.write("\n")
@@ -30,13 +30,13 @@ class Worker(Thread):
                 outUniquePage.write(scraper.maxWordsPage)
 
                 #Task 3: Write 50 most common words in the entire set of pages
-                outMostFreqWord = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_50_most_freq_word.txt', 'w')
+                outMostFreqWord = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_50_most_freq_word.txt', 'w', encoding="utf-8")
                 for token in tokenizer.get50MostWords(scraper.totalWordFreq):
                     outMostFreqWord.write(token)
                     outMostFreqWord.write("\n")
 
                 #Task 4: write targetUrlDict
-                outPagesPerUrl = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/target_url_with_unique_page.txt', 'a')
+                outPagesPerUrl = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/target_url_with_unique_page.txt', 'a', encoding="utf-8")
                 for targetKey in sorted (scraper.targetUrlDict):
                     outPagesPerUrl.write(targetKey)
                     outPagesPerUrl.write(', ')

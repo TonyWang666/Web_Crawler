@@ -32,47 +32,49 @@ def extract_next_links(url, resp):
     if(resp.status > 600 or not is_valid(url)):
         print(url, 'is not a valid url')
         return res
+    try:
+        visitedUrl.add(url)
+        # Task 1: count unique page
+        uniqueUrlNum += 1
+        parsedUrl = urlparse(url) # change here due to only 4, rerun tomorrow
+        hostName = parsedUrl.hostname
+        
+        testOutput = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/test_output.txt', 'a', encoding="utf-8")
+        testOutput.write(parsedUrl.hostname)
+        testOutput.write(parsedUrl.path)
+        testOutput.write('\n')
+        testOutput.close()
+        
+        textForHuman = BeautifulSoup(resp.raw_response.content, "lxml").text
+        output = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_for_scraper.txt', 'w'， encoding="utf-8")
+        output.write(textForHuman.lower())
+        output.close()
 
-    visitedUrl.add(url)
-    # Task 1: count unique page
-    uniqueUrlNum += 1
-    parsedUrl = urlparse(url) # change here due to only 4, rerun tomorrow
-    hostName = parsedUrl.hostname
-    
-    testOutput = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/test_output.txt', 'a')
-    testOutput.write(parsedUrl.hostname)
-    testOutput.write(parsedUrl.path)
-    testOutput.write('\n')
-    testOutput.close()
+        wordList = tokenizer.tokenize('output_for_scraper.txt')
+        # Task 3: computeWordFrequencies implement totalWordFreq while computing the word frequncies
+        wordMap = tokenizer.computeWordFrequencies(wordList)
 
-    textForHuman = BeautifulSoup(resp.raw_response.content, "lxml").text
-    output = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_for_scraper.txt', 'w')
-    output.write(textForHuman.lower())
-    output.close()
+        # Task 2: update unique page
+        if(len(wordMap) > maxWordPerPage):
+            maxWordsPage = url
+            maxWordPerPage = len(wordMap)
 
-    wordList = tokenizer.tokenize('output_for_scraper.txt')
-    # Task 3: computeWordFrequencies implement totalWordFreq while computing the word frequncies
-    wordMap = tokenizer.computeWordFrequencies(wordList)
+        element_tree = html.fromstring(resp.raw_response.content) 
 
-    # Task 2: update unique page
-    if(len(wordMap) > maxWordPerPage):
-        maxWordsPage = url
-        maxWordPerPage = len(wordMap)
+        for link in element_tree.xpath('//a/@href'):
+            link = urldefrag(link)[0]
+            res.append(link)
 
-    element_tree = html.fromstring(resp.raw_response.content) 
-
-    for link in element_tree.xpath('//a/@href'):
-        link = urldefrag(link)[0]
-        res.append(link)
-
-    # Task 4: output subdomains did in the ics.uci.edu domain with number of unique pages in each subdomain
-    if '.ics.uci.edu' in hostName:
-        if(hostName in targetUrlDict):
-            targetUrlDict[hostName] += 1
-        else:
-            targetUrlDict[hostName] = 1
-        # hostName sample is: "www.informatics.uci.edu"
-    return res
+        # Task 4: output subdomains did in the ics.uci.edu domain with number of unique pages in each subdomain
+        if '.ics.uci.edu' in hostName:
+            if(hostName in targetUrlDict):
+                targetUrlDict[hostName] += 1
+            else:
+                targetUrlDict[hostName] = 1
+            # hostName sample is: "www.informatics.uci.edu"
+        return res
+    except:
+        return res
 
 def is_valid(url):
     try:
