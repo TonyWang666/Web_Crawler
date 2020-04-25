@@ -39,14 +39,14 @@ def extract_next_links(url, resp):
         parsedUrl = urlparse(url) # change here due to only 4, rerun tomorrow
         hostName = parsedUrl.hostname
         
-        testOutput = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/test_output.txt', 'a')
+        testOutput = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/test_output.txt', 'a', encoding="utf-8")
         testOutput.write(parsedUrl.hostname)
         testOutput.write(parsedUrl.path)
         testOutput.write('\n')
         testOutput.close()
         
         textForHuman = BeautifulSoup(resp.raw_response.content, "lxml").text
-        output = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_for_scraper.txt', 'w')
+        output = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_for_scraper.txt', 'w'， encoding="utf-8")
         output.write(textForHuman.lower())
         output.close()
 
