@@ -7,6 +7,22 @@ cache server to receive requests.
 "output_50_most_freq_word.txt": answer for Task3, containing 50 most common words in the entire set of pages.
 "target_url_with_unique_page.txt": answer for Task4, containing all target url(in subdomain "ics.uci.edu") with the number for the subdomain we encountered.
 
+Current Issue:
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/crawler/worker.py", line 53, in run
+    scraped_urls = scraper.scraper(tbd_url, resp)
+  File "/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/scraper.py", line 22, in scraper
+    links = extract_next_links(url, resp)
+  File "/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/scraper.py", line 62, in extract_next_links
+    element_tree = html.fromstring(resp.raw_response.content) 
+  File "/Users/jiaxiangwang/Library/Python/3.8/lib/python/site-packages/lxml/html/__init__.py", line 875, in fromstring
+    doc = document_fromstring(html, parser=parser, base_url=base_url, **kw)
+  File "/Users/jiaxiangwang/Library/Python/3.8/lib/python/site-packages/lxml/html/__init__.py", line 763, in document_fromstring
+    raise etree.ParserError(
+lxml.etree.ParserError: Document is empty
 
 CONFIGURATION
 -------------------------
