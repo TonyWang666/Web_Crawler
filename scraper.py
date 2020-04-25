@@ -20,15 +20,13 @@ targetUrlDict = {}
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
-    print('orignal url is:', url)
-    print('links is:', links)
     return [link for link in links if is_valid(link)]
 
 def extract_next_links(url, resp):
     global uniqueUrlNum
     global maxWordsPage
     global maxWordPerPage
-    print('url is:', url)
+    # print('processsing url is:', url)
     res = list()
 
     if(resp.status > 600 or not is_valid(url)):
@@ -36,16 +34,22 @@ def extract_next_links(url, resp):
         return res
 
     visitedUrl.add(url)
-
     # Task 1: count unique page
     uniqueUrlNum += 1
     parsedUrl = urlparse(url) # change here due to only 4, rerun tomorrow
     hostName = parsedUrl.hostname
     
+    testOutput = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/test_output.txt', 'a')
+    testOutput.write(parsedUrl.hostname)
+    testOutput.write(parsedUrl.path)
+    testOutput.write('\n')
+    testOutput.close()
 
     textForHuman = BeautifulSoup(resp.raw_response.content, "lxml").text
     output = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_for_scraper.txt', 'w')
     output.write(textForHuman.lower())
+    output.close()
+
     wordList = tokenizer.tokenize('output_for_scraper.txt')
     # Task 3: computeWordFrequencies implement totalWordFreq while computing the word frequncies
     wordMap = tokenizer.computeWordFrequencies(wordList)
@@ -54,14 +58,12 @@ def extract_next_links(url, resp):
     if(len(wordMap) > maxWordPerPage):
         maxWordsPage = url
         maxWordPerPage = len(wordMap)
-    output.close()
 
     element_tree = html.fromstring(resp.raw_response.content) 
 
     for link in element_tree.xpath('//a/@href'):
         link = urldefrag(link)[0]
-        if(link not in visitedUrl):
-            res.append(link)
+        res.append(link)
 
     # Task 4: output subdomains did in the ics.uci.edu domain with number of unique pages in each subdomain
     if '.ics.uci.edu' in hostName:
@@ -76,8 +78,11 @@ def is_valid(url):
     try:
         parsed = urlparse(url)
         netloc = parsed.netloc
+        path = parsed.path
         if ".ics.uci.edu" not in netloc and ".cs.uci.edu" not in netloc and ".informatics.uci.edu" not in netloc and "today.uci.edu/department/information_computer_sciences" not in netloc:
             return False
+        if "wics.ics.uci.edu/events" in url: 
+            return False #calender page is invalid
         if parsed.scheme not in set(["http", "https"]) or url in visitedUrl:
             return False
         return not re.match(
