@@ -26,7 +26,6 @@ def extract_next_links(url, resp):
     global uniqueUrlNum
     global maxWordsPage
     global maxWordPerPage
-    # print('processsing url is:', url)
     res = list()
 
     if(resp.status > 600 or not is_valid(url)):
@@ -38,15 +37,10 @@ def extract_next_links(url, resp):
         uniqueUrlNum += 1
         parsedUrl = urlparse(url) # change here due to only 4, rerun tomorrow
         hostName = parsedUrl.hostname
-        
-        testOutput = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/test_output.txt', 'a', encoding="utf-8")
-        testOutput.write(parsedUrl.hostname)
-        testOutput.write(parsedUrl.path)
-        testOutput.write('\n')
-        testOutput.close()
+        print('current Url is:', url)
         
         textForHuman = BeautifulSoup(resp.raw_response.content, "lxml").text
-        output = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_for_scraper.txt', 'w'， encoding="utf-8")
+        output = open('/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/output_for_scraper.txt', 'w', encoding="utf-8")
         output.write(textForHuman.lower())
         output.close()
 
