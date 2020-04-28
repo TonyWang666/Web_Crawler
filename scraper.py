@@ -4,6 +4,7 @@ from urllib.parse import urldefrag
 from bs4 import BeautifulSoup
 import tokenizer
 from lxml import html
+from similarity_detection import isSimilarToOtherPage
 
 global uniqueUrlNum
 global visitedUrl
@@ -11,12 +12,14 @@ global maxWordsPage
 global maxWordPerPage
 global totalWordFreq
 global targetUrlDict
+global urlFingers
 visitedUrl = set()
 maxWordsPage = ''
 maxWordPerPage = 10000
 uniqueUrlNum = 0
 totalWordFreq = {}
 targetUrlDict = {}
+urlFingers = list()
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
@@ -45,8 +48,13 @@ def extract_next_links(url, resp):
         output.close()
 
         wordList = tokenizer.tokenize('output_for_scraper.txt')
+
         # Task 3: computeWordFrequencies implement totalWordFreq while computing the word frequncies
         wordMap = tokenizer.computeWordFrequencies(wordList)
+
+        # Extra Credit #2 webpage similarity detection
+        if(isSimilarToOtherPage(wordMap)):
+            return res
 
         # Task 2: update unique page
         if(len(wordMap) > maxWordPerPage):
@@ -75,7 +83,7 @@ def is_valid(url):
         parsed = urlparse(url)
         netloc = parsed.netloc
         path = parsed.path
-        if ".ics.uci.edu" not in netloc and ".cs.uci.edu" not in netloc and ".informatics.uci.edu" not in netloc and "today.uci.edu/department/information_computer_sciences" not in netloc:
+        if ".ics.uci.edu" not in netloc and ".cs.uci.edu" not in netloc and ".informatics.uci.edu" not in netloc and ".stat.uci.edu/*" not in netloc and "today.uci.edu/department/information_computer_sciences" not in netloc:
             return False
         if "wics.ics.uci.edu/events" in url: 
             return False #calender page is invalid
