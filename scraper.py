@@ -8,29 +8,30 @@ from similarity_detection import isSimilarToOtherPage
 from threading import Thread, RLock
 
 global uniqueUrlNum     # NO THREAD
-# global visitedUrl       # DELETE LATER
 global maxWordsPage     # maxWordLock
 global maxWordPerPage   # maxWordLock
 global totalWordFreq    # totalWordFreqLock
 global targetUrlDict    # targetUrlLock
 global urlFingersList   # urlFingerLock
+global visitedUrl
+global pathCount
+
 # Below are the locks
-global uniqueUrlLock
-global maxWordLock
-global urlFingerLock
+global uniqueUrlLock    # lock for updating number of unique url overall
+global maxWordLock      # lock for updating maximum word page for Task 2
+global urlFingerLock    # lock for updating url fingerprint list
 uniqueUrlLock = RLock()
 maxWordLock = RLock()
 urlFingerLock = RLock()
 
-# visitedUrl = set()
 maxWordsPage = ''
 maxWordPerPage = 0
 uniqueUrlNum = 0
 totalWordFreq = {}
 targetUrlDict = {}
 urlFingersList = list()
-
-
+visitedUrl = set()
+pathCount = {}
 
 def scraper(url, resp, workerId):
     links = extract_next_links(url, resp, workerId)
@@ -40,23 +41,35 @@ def extract_next_links(url, resp, workerId):
     global uniqueUrlNum
     global maxWordsPage
     global maxWordPerPage
-    # global visitedUrl
+    global visitedUrl
     global targetUrlDict
+    global pathCount
     res = list()
 
     if(resp.status > 600 or not is_valid(url)):
         print(url, 'is not a valid url')
         return res
     try:
-        # visitedUrl.add(url)
         # Task 1: count unique page
         uniqueUrlLock.acquire()
         uniqueUrlNum += 1
         uniqueUrlLock.release()
 
+        visitedUrl.add(url) # add current list into visitedUrl for dedeplication
         parsedUrl = urlparse(url) # change here due to only 4, rerun tomorrow
         hostName = parsedUrl.hostname
+        path = parsedUrl.path
         print('current Url is:', url)
+
+        hostNameAndPath = hostName + path
+        if hostNameAndPath in pathCount.keys():
+            if pathCount[hostNameAndPath] > 200:
+                return res
+            else:
+                pathCount[hostNameAndPath] += 1
+        else:
+            pathCount[hostNameAndPath] = 1
+            
         
         textForHuman = BeautifulSoup(resp.raw_response.content, "lxml").text
         # output = open(f'/Users/jiaxiangwang/Downloads/UCI/spring2020/CS121/HW2/spacetime-crawler4py/{workerId}', 'w', encoding="utf-8")
@@ -70,8 +83,8 @@ def extract_next_links(url, resp, workerId):
         wordMap = tokenizer.computeWordFrequencies(wordList)
 
         # # Extra Credit #2 webpage similarity detection
-        # if(isSimilarToOtherPage(wordMap)):
-        #     return res
+        if(isSimilarToOtherPage(wordMap)):
+            return res
 
         # Task 2: update maximum words for all pages
         maxWordLock.acquire()
@@ -108,7 +121,7 @@ def is_valid(url):
             return False #calender page is invalid
         if parsed.scheme not in set(["http", "https"]): 
             return False
-        if re.match("(\d{4}-\d{1,2}-\d{1,2})", path.lower()):# or url in visitedUrl:
+        if re.match("(\d{4}-\d{1,2}-\d{1,2})", path.lower()) or url in visitedUrl:
             return False
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"

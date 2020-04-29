@@ -58,8 +58,8 @@ def isSimilarToOtherPage(wordFreqMap):
     fingerprint = senHash(wordFreqMap, toBinaryMap(wordFreqMap))
     for savedFingerprint in scraper.urlFingersList:
         if(getSimilarity(fingerprint, savedFingerprint)):
-            return true
+            return True
     scraper.urlFingerLock.acquire()
     scraper.urlFingersList.append(fingerprint)
     scraper.urlFingerLock.release()
-    return false
+    return False

@@ -1,185 +1,117 @@
 
 
 
-department of computer science - donald bren school of information & computer sciences – department of computer science - donald bren school of information & computer sciences
+
+
+
+presentations – ramesh jain
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
  
+search
 
 
 
 
 
 
+									ramesh jain								
+
+entrepreneur, researcher, and teacher
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-explore
-
-contact us
-
-
-faculty
-research
-
-research areas
-research centers
-
-
-graduate degrees
-
-computer science programs
-current graduate students
-
-
-undergraduate degrees
-news  & events
+about ramesh
 
 news
-seminar series
-distinguished lecture series
-research showcase
+events
 
 
-apply now
+blogs
+research
 
-undergraduate admissions
-graduate admissions
-faculty candidates
+books
+patents
+presentations
+projects
+research papers
 
+computer vision
+experiential computing
+multimedia information management
 
 
 
 
+teaching
 
+current courses
+past courses
 
 
+entrepreneurship
 
+current companies
+past companies
 
-uci-led project seeks to combat wildfires
 
+partners
 
+current students
+past students
+collaborators
 
 
+professional/social
 
+services
+recognitions
+interviews
 
 
+personal
 
+affiliations
+education
+favorite books
+favorite quotes
 
 
-uci researchers’ deep learning algorithm solves rubik’s cube faster than any human
+navigation
 
 
-
-
-
-
-
-
-
-
-uci computer scientists breathe life into venice biennale installations
-
-
-
-
-
-
-
-
-
-
-ics alumnus nithin jilla’s nonprofit inspires students to love stem
-
-
-
-
-
-
-
-
-
-
-
-the department of computer science is internationally recognized as a unique group of faculty, visiting researchers, students and educational programs, which provide a world-class research environment that goes well beyond the core areas of computer science. our curricula, faculty and research areas focus on an array of topics, including algorithms and complexity; artificial intelligence and machine learning; biomedical informatics and computational biology; computer architecture and design; computer graphics and visualization; computer vision; databases and data mining; embedded systems; medical informatics; multimedia computing; networks and distributed systems; operating systems; programming languages and systems; scientific and numerical computing; security, privacy and cryptography; and software engineering.
-
-
-faculty recruitment
-uci’s department of computer science is seeking exceptional candidates for multiple tenured/tenure-track professor positions and part-time lecturer positions. a detailed description of each position, and application instructions, can be found here.
-
-
-job opportunities
-for a listing of current academic positions open in the computer science department, visit the academic recruitment website.
-
-recruitment alert: ics is looking for qualified midcareer professors, such as advanced assistant professors or tenured associate to early full professors, as part of our midcareer professor hiring initiative. apply online!
-the cs department is inviting applications for a “professor of teaching in computer science” faculty position with security of employment. this position parallels the tenure track faculty research series starting in academic year 2017-2018.
-
-
-
-cs distinguished lecture series
-january 10, 2020 • 11 a.m. • dbh 6011
-gul agha
-professor emeritus of computer science at the university of illinois at urbana-champaign; interim ceo of embedor technologies
-“scalable programming: progress, prospects and challenges”
-winter 2020 seminar schedule »
-
-
-
-distinguished lecture series
-join us in donald bren hall 6011 for this free lecture series, which is sponsored by the department of computer science. more information »
-may 12, 2017renée j. miller
-professor of computer science, university of toronto
-donald bren hall, room 6011
-11:00am – 12:00pm“evaluating data integration and data curation systems”
-abstract/bio
-
-  latest news
-
-
-computer science majors preston tai and brandon tom appointed urop fellows
-january 24, 2020
-
-
-uci-led project seeks to combat wildfires
-january 17, 2020
-
-
-zotbins and zero waste anteaters support uc goal for 2020
-january 13, 2020
-
-
-ph.d. student phanwadee sinthong and professor carey win best student paper award
-january 3, 2020
-
-
-explore virtual reality with new vr headsets loan program and workshop
-december 17, 2019
 
 
 
@@ -187,18 +119,61 @@ december 17, 2019
 
 
 
+    				presentations    			
 
 
-© 2020 uc regents
-feedback
-privacy policy
+each presentation will open in a new browser window.
+
+ context in multimedia information retrieval.   tutorial at acm multimedia 2003, berkeley, ca, usa, on  november 2nd, 2003. 
+multimedia  electronic chronicles. distinguished speaker talk at buffalo, university at buffalo, on october 23, 2003.
+experiential computing: from information to insights. cray lecture, university of minnesota, on october 6, 2003. 
+insights in image and video retrieval. key note talk at civr 2003, urbana, il, on july 24,  2003.
+out of the box data engineering: events in heterogeneous data: invited talk at international conference on data engineering, bangalore, india on march 7, 2003.
+multimedia information systems: technology and applications, at mir2003 in darmstadt germany, on january 31, 2003
+semantics in multimedia systems; keynote talk at international conference on multi-media modelling, taipei, january 8-10, 2003.
+folk computing for bridging digital divide; given as a distinguished speaker, tata infotech symposium, august 6, mumbai india. 
+ teleexperience: communicating compelling experience; keynote talk at acm multimedia 2001
 
 
+
+
+by ramesh |
+    				october 20, 2005 |
+    				             		technical thoughts |
+             	 
+    				             		no comments |
+             	 		          				
+    			
+
+
+← white papers
+teaching →
+
+
+
+leave a reply cancel reply 
+your email address will not be published. required fields are marked *comment name * 
+email * 
+website 
+ 
 
  
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+copyright © 2020 ramesh jain |  theme by: theme horse |  powered by: wordpress
+back to top 
 
 
 

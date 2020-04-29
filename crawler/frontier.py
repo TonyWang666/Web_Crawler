@@ -71,14 +71,12 @@ class Frontier(object):
 
     def add_url(self, url):
         try:
-            Frontier.queueLock.acquire()
             url = normalize(url)
             urlhash = get_urlhash(url)
             if urlhash not in self.save:
                 self.save[urlhash] = (url, False)
                 self.save.sync()
                 self.to_be_downloaded.put(url)
-            Frontier.queueLock.release()
         except Exception as e:
             print('Exception in add_url and Error is:', e)
             Frontier.queueLock.release()

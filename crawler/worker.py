@@ -5,21 +5,19 @@ from utils import get_logger
 import scraper
 import time
 import tokenizer
-
-global domainLocks
-domainLocks = {".ics.uci.edu": 0, ".cs.uci.edu": 0, ".informatics.uci.edu": 0, "today.uci.edu/department/information_computer_sciences": 0, ".stat.uci.edu": 0}
+from threading import RLock
 
 class Worker(Thread):
-
+    domainLocksLock = RLock()
+    domainLocks = {".ics.uci.edu": 0, ".cs.uci.edu": 0, ".informatics.uci.edu": 0, "today.uci.edu/department/information_computer_sciences": 0, ".stat.uci.edu": 0}
     def __init__(self, worker_id, config, frontier):
         self.logger = get_logger(f"Worker-{worker_id}", "Worker")
         self.config = config
         self.workerId = worker_id
         self.frontier = frontier
         super().__init__(daemon=True)
-        
+            
     def run(self):
-        global domainLocks
         while True:
             tbd_url = self.frontier.get_tbd_url()
             if not tbd_url:
@@ -54,20 +52,23 @@ class Worker(Thread):
                     outPagesPerUrl.write('\n')
                 outPagesPerUrl.close()
                 break
-            
             #  check tbd_url' domain locked or not           
             parsed = urlparse(tbd_url)
             netloc = parsed.netloc
-            for domain in domainLocks:
-                if domain in netloc and domainLocks[domain] == 1:
+            Worker.domainLocksLock.acquire()
+            for domain in Worker.domainLocks:
+                if domain in netloc and Worker.domainLocks[domain] == 1:
                     self.frontier.add_url(tbd_url)
+                    Worker.domainLocksLock.release()
+                    # print('\n url is', tbd_url)
+                    # print('put this url back to queue with to wait again')
                     return
-            for domain in domainLocks:
+            for domain in Worker.domainLocks:
                 if domain in netloc:
-                    domainLocks[domain] = 1
-                    print(f'workerId: {self.workerId} with domain {domain} is set to 1')
+                    Worker.domainLocks[domain] = 1
+                    # print(f'workerId: {self.workerId} with domain {domain} is set to 1')
                     break
-
+            Worker.domainLocksLock.release()
             resp = download(tbd_url, self.config, self.logger)
             self.logger.info(
                 f"Downloaded {tbd_url}, status <{resp.status}>, "
@@ -76,17 +77,17 @@ class Worker(Thread):
                 scraped_urls = scraper.scraper(tbd_url, resp, self.workerId)
 
                 for scraped_url in scraped_urls:
-                    print('add url:', scraped_url)
                     self.frontier.add_url(scraped_url)
                 self.frontier.mark_url_complete(tbd_url)
-
                 #   unlock the corresponding domain lock
-                for domain in domainLocks:
-                    if domain in netloc and domainLocks[domain] == 1:
+                Worker.domainLocksLock.acquire()
+                for domain in Worker.domainLocks:
+                    if domain in netloc and Worker.domainLocks[domain] == 1:
                         time.sleep(self.config.time_delay)
-                        domainLocks[domain] = 0
-                        print(f'workerId: {self.workerId} with domain {domain} is set to 0')
+                        Worker.domainLocks[domain] = 0
+                        # print(f'workerId: {self.workerId} with domain {domain} is set to 0')
                         break
+                Worker.domainLocksLock.release()
             except Exception as e:
                 print('Exception in worker with error:', e)
             # time.sleep(self.config.time_delay)
