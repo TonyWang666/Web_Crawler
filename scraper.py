@@ -75,7 +75,7 @@ def is_valid(url):
         parsed = urlparse(url)
         netloc = parsed.netloc
         path = parsed.path
-        if ".ics.uci.edu" not in netloc and ".cs.uci.edu" not in netloc and ".informatics.uci.edu" not in netloc and "today.uci.edu/department/information_computer_sciences" not in netloc:
+        if ".ics.uci.edu" not in netloc and ".cs.uci.edu" not in netloc and ".informatics.uci.edu" not in netloc and ".stat.uci.edu" not in netloc and "today.uci.edu/department/information_computer_sciences" not in netloc:
             return False
         if "wics.ics.uci.edu/events" in url: 
             return False #calender page is invalid
