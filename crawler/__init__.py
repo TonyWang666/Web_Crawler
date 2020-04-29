@@ -17,7 +17,7 @@ class Crawler(object):
         for worker in self.workers:
             worker.start()
 
-    def start(self):
+    def start(self):       # start the workers and called by launch.py
         self.start_async()
         self.join()
 
