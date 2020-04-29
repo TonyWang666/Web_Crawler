@@ -49,9 +49,9 @@ def extract_next_links(url, resp):
         wordMap = tokenizer.computeWordFrequencies(wordList)
 
         # Task 2: update unique page
-        if(len(wordMap) > maxWordPerPage):
+        if(len(wordList) > maxWordPerPage):
             maxWordsPage = url
-            maxWordPerPage = len(wordMap)
+            maxWordPerPage = len(wordList)
 
         element_tree = html.fromstring(resp.raw_response.content) 
 
