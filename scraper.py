@@ -81,7 +81,7 @@ def extract_next_links(url, resp, workerId):
 
         # Task 3: computeWordFrequencies implement totalWordFreq while computing the word frequncies
         wordMap = tokenizer.computeWordFrequencies(wordList)
-
+        
         # # Extra Credit #2 webpage similarity detection
         if(isSimilarToOtherPage(wordMap)):
             return res
