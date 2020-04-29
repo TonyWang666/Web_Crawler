@@ -22,6 +22,7 @@ def tokenize(filename: str) -> [str]:
 # O(n)
 # take a list and return the word counts
 def computeWordFrequencies(tokens: [str]) -> {str: int}:
+    scraper.maxWordLock.acquire()
     token_map = {}
     for token in tokens:
         if token in token_map:
@@ -32,6 +33,7 @@ def computeWordFrequencies(tokens: [str]) -> {str: int}:
             scraper.totalWordFreq[token] += 1
         else:
             scraper.totalWordFreq[token] = 1
+    scraper.maxWordLock.release()
     return token_map
 
 # 

@@ -41,9 +41,6 @@ def senHash(wordFreqMap, bNumOfUrl):
             key[i] = 0
     return key
 
-def createFingerprint(wordFreqMap):
-    return senHash(wordFreqMap, toBinaryMap(wordFreqMap))
-
 # Input:    fingerprint1: fingerprint of url1; fingerprint2: fingerprint of url2
 # Output:   true if two webpages have a high similarity; otherwise return false
 def getSimilarity(fingerprint1,fingerprint2):
@@ -51,27 +48,18 @@ def getSimilarity(fingerprint1,fingerprint2):
     for i in range(BITS):
         if fingerprint1[i]!=fingerprint2[i]:
             diff += 1
-    print('diff is:', diff)
-    return diff < 4
+    return diff < 3
 
 # Input:    Word Frequency Map of a webpage
 # Output:   true if similar to any webpage in scraper.urlFingers list; false otherwise
 # Action:   Return true means similarity is high to one of webpage in scraper.urlFingers.
 #           If return false, also adding current fingerprint to scraper.urlFingers list.
 def isSimilarToOtherPage(wordFreqMap):
-    fingerprint = createFingerprint(wordFreqMap)
-    for savedFingerprint in scraper.urlFingers:
+    fingerprint = senHash(wordFreqMap, toBinaryMap(wordFreqMap))
+    for savedFingerprint in scraper.urlFingersList:
         if(getSimilarity(fingerprint, savedFingerprint)):
             return true
+    scraper.urlFingerLock.acquire()
+    scraper.urlFingersList.append(fingerprint)
+    scraper.urlFingerLock.release()
     return false
-
-# import sys
-
-# if __name__ == '__main__':
-#     fileName1 = sys.argv[1]
-#     fileName2 = sys.argv[2]
-#     wordFreqMap1 = computeWordFrequencies(tokenize(fileName1))
-#     wordFreqMap2 = computeWordFrequencies(tokenize(fileName2))
-#     fingerprint1 = senHash(wordFreqMap1, toBinaryMap(wordFreqMap1))
-#     fingerprint2 = senHash(wordFreqMap2, toBinaryMap(wordFreqMap2))
-#     print('These two files similar situation is:', getsimilarity(fingerprint1, fingerprint2))
