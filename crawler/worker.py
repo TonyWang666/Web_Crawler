@@ -19,6 +19,7 @@ class Worker(Thread):
         super().__init__(daemon=True)
         
     def run(self):
+        global domainLocks
         while True:
             tbd_url = self.frontier.get_tbd_url()
             if not tbd_url:
@@ -71,16 +72,21 @@ class Worker(Thread):
             self.logger.info(
                 f"Downloaded {tbd_url}, status <{resp.status}>, "
                 f"using cache {self.config.cache_server}.")
-            scraped_urls = scraper.scraper(tbd_url, resp, self.workerId)
-            for scraped_url in scraped_urls:
-                self.frontier.add_url(scraped_url)
-            self.frontier.mark_url_complete(tbd_url)
+            try:
+                scraped_urls = scraper.scraper(tbd_url, resp, self.workerId)
 
-            #   unlock the corresponding domain lock
-            for domain in domainLocks:
-                if domain in netloc and domainLocks[domain] == 1:
-                    time.sleep(self.config.time_delay)
-                    domainLocks[domain] = 0
-                    print(f'workerId: {self.workerId} with domain {domain} is set to 0')
-                    break
+                for scraped_url in scraped_urls:
+                    print('add url:', scraped_url)
+                    self.frontier.add_url(scraped_url)
+                self.frontier.mark_url_complete(tbd_url)
+
+                #   unlock the corresponding domain lock
+                for domain in domainLocks:
+                    if domain in netloc and domainLocks[domain] == 1:
+                        time.sleep(self.config.time_delay)
+                        domainLocks[domain] = 0
+                        print(f'workerId: {self.workerId} with domain {domain} is set to 0')
+                        break
+            except Exception as e:
+                print('Exception in worker with error:', e)
             # time.sleep(self.config.time_delay)
